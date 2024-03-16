@@ -1,0 +1,171 @@
+export type Song = {
+  name: string;
+  artist: string;
+  addedBy: string;
+  length: string;
+  cover: string;
+};
+
+export const MOC_DATA: Song[] = [
+  {
+    name: "Brainstorm",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "2:52",
+    cover: "/cover.webp",
+  },
+  {
+    name: "Teddy Picker",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "2:45",
+    cover: "/cover.webp",
+  },
+  {
+    name: "D is for Dangerous",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "2:18",
+    cover: "/cover.webp",
+  },
+  {
+    name: "Balaclava",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "2:51",
+    cover: "/cover.webp",
+  },
+  {
+    name: "Flourescent Adolescent",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "3:03",
+    cover: "/cover.webp",
+  },
+  {
+    name: "Flourescent Adolescent",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "3:03",
+    cover: "/cover.webp",
+  },
+  {
+    name: "Flourescent Adolescent",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "3:03",
+    cover: "/cover.webp",
+  },
+  {
+    name: "Flourescent Adolescent",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "3:03",
+    cover: "/cover.webp",
+  },
+  {
+    name: "Flourescent Adolescent",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "3:03",
+    cover: "/cover.webp",
+  },
+  {
+    name: "Flourescent Adolescent",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "3:03",
+    cover: "/cover.webp",
+  },
+  {
+    name: "Flourescent Adolescent",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "3:03",
+    cover: "/cover.webp",
+  },
+  {
+    name: "Flourescent Adolescent",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "3:03",
+    cover: "/cover.webp",
+  },
+  {
+    name: "Flourescent Adolescent",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "3:03",
+    cover: "/cover.webp",
+  },
+  {
+    name: "Flourescent Adolescent",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "3:03",
+    cover: "/cover.webp",
+  },
+  {
+    name: "Flourescent Adolescent",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "3:03",
+    cover: "/cover.webp",
+  },
+  {
+    name: "Flourescent Adolescent",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "3:03",
+    cover: "/cover.webp",
+  },
+  {
+    name: "Flourescent Adolescent",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "3:03",
+    cover: "/cover.webp",
+  },
+  {
+    name: "Flourescent Adolescent",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "3:03",
+    cover: "/cover.webp",
+  },
+  {
+    name: "Flourescent Adolescent",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "3:03",
+    cover: "/cover.webp",
+  },
+  {
+    name: "Flourescent Adolescent",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "3:03",
+    cover: "/cover.webp",
+  },
+  {
+    name: "Flourescent Adolescent",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "3:03",
+    cover: "/cover.webp",
+  },
+  {
+    name: "Flourescent Adolescent",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "3:03",
+    cover: "/cover.webp",
+  },
+  {
+    name: "Flourescent Adolescent",
+    artist: "Arctic Monkeys",
+    addedBy: "Anto Keinänen",
+    length: "3:03",
+    cover: "/cover.webp",
+  },
+];

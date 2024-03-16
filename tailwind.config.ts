@@ -6,7 +6,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)", ...fontFamily.sans],
+        sans: ["Rubik", ...fontFamily.sans],
+      },
+      animation: {
+        "slow-spin": "spin 6s linear infinite",
       },
     },
   },
