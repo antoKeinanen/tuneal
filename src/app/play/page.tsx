@@ -1,11 +1,12 @@
 import Image from "next/image";
 import {
-  EllipsisVerticalIcon,
-  PauseIcon,
-  PlusIcon,
-  SkipBackIcon,
-  SkipForwardIcon,
-} from "lucide-react";
+  IconPlayerSkipBack,
+  IconPlayerPause,
+  IconPlayerSkipForward,
+  IconPlus,
+  IconDotsVertical,
+} from "@tabler/icons-react";
+
 import { MOC_DATA, type Song } from "./data";
 import { key } from "~/lib/key";
 
@@ -30,21 +31,21 @@ function Play() {
           </p>
 
           <div className="mt-4 flex justify-center gap-6">
-            <button className="rounded-full bg-indigo-50 p-2">
-              <SkipBackIcon
-                size={28}
+            <button className="h-12 w-12 rounded-full bg-indigo-50 p-3">
+              <IconPlayerSkipBack
+                size={25}
                 className="fill-indigo-950 stroke-indigo-950"
               />
             </button>
-            <button className="rounded-full bg-indigo-50 p-2">
-              <PauseIcon
-                size={28}
+            <button className="h-12 w-12 rounded-full bg-indigo-50 p-3">
+              <IconPlayerPause
+                size={25}
                 className="fill-indigo-950 stroke-indigo-950"
               />
             </button>
-            <button className="rounded-full bg-indigo-50 p-2">
-              <SkipForwardIcon
-                size={28}
+            <button className="h-12 w-12 rounded-full bg-indigo-50 p-3">
+              <IconPlayerSkipForward
+                size={25}
                 className="fill-indigo-950 stroke-indigo-950"
               />
             </button>
@@ -55,7 +56,7 @@ function Play() {
         <div className="mb-4 flex items-center justify-between">
           <h1 className="mt-4 w-fit text-3xl font-bold">Up next:</h1>
           <button className="flex items-center gap-2 rounded-xl bg-gradient-to-l from-indigo-800 to-indigo-900 px-4 py-2 text-lg text-indigo-50 hover:opacity-80">
-            <PlusIcon /> Add Song
+            <IconPlus /> Add Song
           </button>
         </div>
         <div className="mt-4 h-full w-full overflow-y-scroll pb-16">
@@ -110,7 +111,7 @@ function PlaylistRow({
       <td className="text-indigo-800">{song.length}</td>
       <td className="text-indigo-800">
         <button className="text-indigo-800">
-          <EllipsisVerticalIcon />
+          <IconDotsVertical />
         </button>
       </td>
     </tr>
