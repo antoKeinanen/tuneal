@@ -1,5 +1,6 @@
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 import { queueRouter } from "./routers/queue";
+import { songRouter } from "./routers/song";
 
 /**
  * This is the primary router for your server.
@@ -8,6 +9,7 @@ import { queueRouter } from "./routers/queue";
  */
 export const appRouter = createTRPCRouter({
   queue: queueRouter,
+  song: songRouter,
 });
 
 // export type definition of API

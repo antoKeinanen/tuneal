@@ -1,57 +1,23 @@
-import Image from "next/image";
-import {
-  IconPlayerSkipBack,
-  IconPlayerPause,
-  IconPlayerSkipForward,
-  IconPlus,
-  IconDotsVertical,
-} from "@tabler/icons-react";
+"use client";
+import { IconPlus, IconDotsVertical } from "@tabler/icons-react";
 
-import { MOC_DATA, type Song } from "./data";
 import { key } from "~/lib/key";
+import { api } from "~/trpc/react";
+import { type Song } from "~/types/spotify";
+import { Turntable, TurntableLoading } from "~/components/turntable";
 
 function Play() {
+  const { data: queueData } = api.queue.getMyQueue.useQuery();
+  const { data: songData, isLoading: songLoading } =
+    api.song.getCurrentSong.useQuery();
+
   return (
     <main className="flex h-screen w-screen gap-6 bg-gradient-to-bl from-indigo-800 to-indigo-950 p-2">
-      <section className="flex w-[30rem] flex-col justify-end">
-        <div className="w-full rounded-xl bg-indigo-950 p-4">
-          <Image
-            src="/cover.webp"
-            className="motion-safe:animate-slow-spin w-full select-none rounded-full"
-            draggable="false"
-            alt=""
-            width="250"
-            height="250"
-          />
-          <p className="mt-4 text-2xl font-semibold tracking-tight text-indigo-50">
-            Fluorescent Adolescent
-          </p>
-          <p className="text-sm text-indigo-100">
-            Arctic Monkeys • Favourite worst nightmare{" "}
-          </p>
-
-          <div className="mt-4 flex justify-center gap-6">
-            <button className="h-12 w-12 rounded-full bg-indigo-50 p-3">
-              <IconPlayerSkipBack
-                size={25}
-                className="fill-indigo-950 stroke-indigo-950"
-              />
-            </button>
-            <button className="h-12 w-12 rounded-full bg-indigo-50 p-3">
-              <IconPlayerPause
-                size={25}
-                className="fill-indigo-950 stroke-indigo-950"
-              />
-            </button>
-            <button className="h-12 w-12 rounded-full bg-indigo-50 p-3">
-              <IconPlayerSkipForward
-                size={25}
-                className="fill-indigo-950 stroke-indigo-950"
-              />
-            </button>
-          </div>
-        </div>
-      </section>
+      {songLoading || !songData ? (
+        <TurntableLoading />
+      ) : (
+        <Turntable songData={songData.currentSong} />
+      )}
       <section className="h-full w-full overflow-y-hidden rounded-xl bg-white p-6 py-3">
         <div className="mb-4 flex items-center justify-between">
           <h1 className="mt-4 w-fit text-3xl font-bold">Up next:</h1>
@@ -73,7 +39,7 @@ function Play() {
               </tr>
             </thead>
             <tbody className="divide-y">
-              {MOC_DATA.map((song, i) => (
+              {queueData?.queue.map((song, i) => (
                 <PlaylistRow key={key()} song={song} trackNumber={i + 1} />
               ))}
             </tbody>
@@ -85,7 +51,7 @@ function Play() {
 }
 
 function PlaylistRow({
-  song,
+  song: song,
   trackNumber,
 }: {
   song: Song;
@@ -97,8 +63,9 @@ function PlaylistRow({
         {trackNumber.toString().padStart(2, "0")}
       </td>
       <td className="text-indigo-800">
-        <Image
-          src={song.cover}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={song.coverImage}
           className="rounded-lg"
           alt=""
           width="50"
@@ -106,9 +73,11 @@ function PlaylistRow({
         />
       </td>
       <td className="text-indigo-800">{song.name}</td>
-      <td className="text-indigo-800">{song.artist}</td>
-      <td className="text-indigo-800">{song.addedBy}</td>
-      <td className="text-indigo-800">{song.length}</td>
+      <td className="text-indigo-800">{song.artists.join(", ")}</td>
+      <td className="text-indigo-800">{"TODO"}</td>
+      <td className="text-indigo-800">
+        {new Date(song.duration_ms).toISOString().slice(11, -1)}
+      </td>
       <td className="text-indigo-800">
         <button className="text-indigo-800">
           <IconDotsVertical />

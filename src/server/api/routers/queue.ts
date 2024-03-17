@@ -9,10 +9,10 @@ export const queueRouter = createTRPCRouter({
       console.error("No account found for user", ctx.session.user.id);
       return null;
     }
-    const playbackState = await getQueue(account);
+    const queue = await getQueue(account);
 
     return {
-      ...playbackState.queue,
+      queue,
     };
   }),
 });

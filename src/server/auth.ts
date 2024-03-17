@@ -3,6 +3,7 @@ import {
   getServerSession,
   type DefaultSession,
   type NextAuthOptions,
+  TokenSet,
 } from "next-auth";
 import { type Adapter } from "next-auth/adapters";
 import SpotifyProvider from "next-auth/providers/spotify";
@@ -10,6 +11,8 @@ import SpotifyProvider from "next-auth/providers/spotify";
 import { env } from "~/env";
 import { db } from "~/server/db";
 import { createTable } from "~/server/db/schema";
+import { getAccountById, updateTokens } from "./db/engine/account";
+import SpotifyWebApi from "spotify-web-api-node";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -39,13 +42,49 @@ declare module "next-auth" {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    session: async ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id,
-      },
-    }),
+    session: async ({ session, user }) => {
+      const account = await getAccountById(user.id);
+
+      if (!account) {
+        console.error("No account found for user", user.id);
+        return {
+          ...session,
+          user: {
+            ...session.user,
+            id: user.id,
+          },
+        };
+      }
+
+      if (account?.expires_at ?? 0 > Date.now()) {
+        try {
+          const api = new SpotifyWebApi({
+            clientId: env.SPOTIFY_CLIENT_ID,
+            clientSecret: env.SPOTIFY_CLIENT_SECRET,
+            refreshToken: account.refresh_token ?? "",
+          });
+
+          const response = await api.refreshAccessToken();
+          const tokens = {
+            access_token: response.body.access_token,
+            expires_at: Date.now() + response.body.expires_in * 1000,
+            refresh_token: response.body.refresh_token ?? account.refresh_token,
+          } as TokenSet;
+
+          await updateTokens(account.userId, tokens);
+        } catch (error) {
+          console.error("Failed to refresh access token", error);
+        }
+      }
+
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: user.id,
+        },
+      };
+    },
   },
   adapter: DrizzleAdapter(db, createTable) as Adapter,
   providers: [
